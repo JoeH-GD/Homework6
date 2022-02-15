@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Homework6
 {
-    class Class2
+    class DelegateWithArray
     {
 
         public delegate double MyDelegate(double x);
