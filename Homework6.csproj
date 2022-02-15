@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Homework6.Class2</StartupObject>
+    <StartupObject>Homework6.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,8 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Class2.cs" />
+    <Compile Include="Colletions.cs" />
+    <Compile Include="DelegateWithArray.cs" />
     <Compile Include="DelegateTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

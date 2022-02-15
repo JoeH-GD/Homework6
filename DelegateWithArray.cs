@@ -5,9 +5,14 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 
+
+//Халдон Джо. Модифицировать программу нахождения минимума функции так, чтобы можно было передавать функцию в виде делегата.
+//Сделать меню с различными функциями и представить пользователю выбор, для какой функции и на каком отрезке находить минимум.
+//Использовать массив (или список) делегатов, в котором хранятся различные функции.
+
 namespace Homework6
 {
-    class Class2
+    class DelegateWithArray
     {
 
         public delegate double MyDelegate(double x);
@@ -96,6 +101,12 @@ namespace Homework6
          {
             Function, Function2, Function3, Function4
          };
+
+            Console.WriteLine("Халдон Джо. Модифицировать программу нахождения минимума функции так, чтобы можно было передавать функцию в виде делегата.\n" +
+                "Сделать меню с различными функциями и представить пользователю выбор, для какой функции и на каком отрезке находить минимум.\n" +
+                "Использовать массив (или список) делегатов, в котором хранятся различные функции.\n");
+
+            Console.WriteLine("==================================================================");
             Console.WriteLine("Enter the number from 0 to 3 to coose function");
             int number = int.Parse(Console.ReadLine());
             Console.WriteLine("Choose the minimum for x");

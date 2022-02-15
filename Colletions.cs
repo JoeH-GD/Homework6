@@ -21,7 +21,7 @@ namespace Homework6
         public string city;
        
 
-        // Конструктор класса-коллекции 
+        // Конструктор класса-коллекции (пришлось поменять местами возраст и курс)
         public Student(string firstName, string lastName, string university, string faculty, string department, int age, int course, int group, string city)
         {
             this.lastName = lastName;
@@ -40,7 +40,7 @@ namespace Homework6
     class Program
     {
 
-
+//Переписал, чтобы числа сравнивались также как строки и все работает аналогично
         static int MyDelegat(Student st1, Student st2)        
         {
             if (st1.age == st2.age) return 0;
@@ -48,9 +48,21 @@ namespace Homework6
             else return -1;
         }
         static void Main(string[] args)
+
         {
-            int lastCourses =0;
-            List<Student> list = new List<Student>();                             // Создаем список студентов
+
+            Console.WriteLine("Халдон. Переделать программу Пример использования коллекций для решения следующих задач:\n" +
+                "а) Подсчитать количество студентов учащихся на 5 и 6 курсах;\n" +
+                "б) подсчитать сколько студентов в возрасте от 18 до 20 лет на каком курсе учатся(*частотный массив);\n" +
+                " в) отсортировать список по возрасту студента;\n");
+            Console.WriteLine("==================================================================");
+
+
+            int courseFive = 0;
+            int courseSix = 0;
+            Dictionary<int, int> cousreFrequency = new Dictionary<int, int>();
+
+            List<Student> list = new List<Student>();                
             DateTime dt = DateTime.Now;
             StreamReader sr = new StreamReader("students.csv");
             while (!sr.EndOfStream)
@@ -61,7 +73,17 @@ namespace Homework6
                     // Добавляем в список новый экземпляр класса Student
                     list.Add(new Student(s[0], s[1], s[2], s[3], s[4], int.Parse(s[5]), int.Parse(s[6]), int.Parse(s[7]), s[8]));
                     // Одновременно подсчитываем количество бакалавров и магистров
-                    if (int.Parse(s[6]) >= 5) lastCourses++;
+                    if (int.Parse(s[6]) == 5) courseFive++;
+                    else if (int.Parse(s[6]) == 6) courseSix++;
+
+                    if (int.Parse(s[5]) <= 20 && int.Parse(s[5]) >= 18)
+                    {
+                        if (cousreFrequency.ContainsKey(int.Parse(s[6])))
+                            cousreFrequency[int.Parse(s[6])] += 1;
+                        else
+                            cousreFrequency.Add(int.Parse(s[6]), 1);
+                    }
+
                 }
                 catch (Exception e)
                 {
@@ -70,11 +92,13 @@ namespace Homework6
                     // Выход из Main
                     if (Console.ReadKey().Key == ConsoleKey.Escape) return;
                 }
+
+               
             }
             sr.Close();
             list.Sort((MyDelegat));
             Console.WriteLine("Всего студентов:" + list.Count);
-            Console.WriteLine("Студентов на 5 и 6 курсах:{0}", lastCourses);
+            Console.WriteLine("Students on the 5th course{0} and on the 6th course {1}", courseFive, courseSix);
             foreach (var v in list) Console.WriteLine(v.firstName);
             Console.WriteLine(DateTime.Now - dt);
             Console.ReadLine();
